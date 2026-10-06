@@ -30,31 +30,31 @@ Diberikan sebuah function targetTerdekat(arr) yang menerima satu parameter berup
 function targetTerdekat(arr) {
     // you can only write your code here!
     let i = 0;
-    let positionX;
-    let positionO;
-    let distanceList = [];
+    let positionX; //set the x position note
+    let positionO; //set the o position note
+    let distanceList = []; //set array to list the distance between an o to its nearest x on its right or vice versa
     for(let i =0; i<arr.length; i++){
         if(arr[i] == 'x'){
-            positionX = i;
+            positionX = i; //note the position of x
         }
         else if(arr[i] == 'o'){
-            positionO = i;
+            positionO = i; // note the position of x
         }
 
         if ((positionO != null) && (positionX != null)){
-            distanceList.push(Math.abs(positionO - positionX));
-            positionO = null;
-            positionX = null;
+            distanceList.push(Math.abs(positionO - positionX)); //push the distance to distanceList array
+            positionO = null; //reset positionO
+            positionX = null; //reset positionX, both now are ready to note nex o after x or x after o event
         }
     }
 
     if(!distanceList.length){
-        return 0;
+        return 0; //if the program have iteratted yet didnt found x after o nor o after x, it would return 0
     }
     else if (distanceList.length == 1){
-        return distanceList[0]
+        return distanceList[0] //if it only found a single event, return its value
     }
-    else{
+    else{ //this else to short minimum distance then return it
         let minimalDistance = distanceList[0];
         for(let j = 0; j < distanceList.length; j++){
             if (distanceList[j] < minimalDistance){
